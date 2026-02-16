@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RP Soluciones Textiles | Automatización Industrial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f6f9;
+    color:#1e293b;
+}
+
+/* ================= NAVBAR ================= */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(15,23,42,0.65);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    transition:all 0.4s ease;
+}
+
+header.scrolled{
+    background:rgba(11,18,32,0.95);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    border-bottom:2px solid #0046a0;
+}
+
+.logo img{
+    height:110px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav a{
+    position:relative;
+    color:#e5e7eb;
+    text-decoration:none;
+    font-weight:500;
+    padding-bottom:5px;
+    transition:0.3s;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:2px;
+    background:#3b82f6;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ffffff;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* ================= HERO CON IMAGEN LOCAL ================= */
+
+.hero{
+    height:100vh;
+    background:
+        linear-gradient(
+            rgba(15,23,42,0.75),
+            rgba(15,23,42,0.85)
+        ),
+        url('hero.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 20px;
+    color:white;
+    padding-top:160px;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+.btn{
+    padding:15px 35px;
+    background:#3b82f6;
+    color:white;
+    font-weight:600;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#2563eb;
+}
+
+/* ================= SECCIONES ================= */
+
+section{
+    padding:120px 10%;
+}
+
+.section-light{
+    background:white;
+}
+
+.section-dark{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+h2{
+    font-size:34px;
+    margin-bottom:50px;
+    text-align:center;
+}
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#f1f5f9;
+    padding:35px;
+    border-radius:12px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+.section-dark .card{
+    background:rgba(255,255,255,0.08);
+    color:white;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#0b1220;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* ================= WHATSAPP + CHAT IA ================= */
+
+.whatsapp-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25D366;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    z-index:1000;
+    transition:0.3s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.1);
+}
+
+.chat-box{
+    position:fixed;
+    bottom:100px;
+    right:25px;
+    width:330px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:1000;
+}
+
+.chat-header{
+    background:#25D366;
+    color:white;
+    padding:15px;
+    font-weight:600;
+}
+
+.chat-messages{
+    padding:15px;
+    height:260px;
+    overflow-y:auto;
+    font-size:14px;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    border:none;
+    padding:10px;
+    outline:none;
+}
+
+.chat-input button{
+    background:#25D366;
+    border:none;
+    color:white;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+.message{
+    margin-bottom:10px;
+}
+
+.bot{
+    color:#1e293b;
+}
+
+.user{
+    text-align:right;
+    color:#2563eb;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    nav ul{
+        display:none;
+    }
+    .logo img{
+        height:85px;
+    }
+    .hero h1{
+        font-size:34px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="RP Soluciones Textiles">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Automatización y Control de Producción</h1>
+        <p>Especialistas en optimización de procesos textiles con Excel y Power BI</p>
+        <a href="#contacto" class="btn">Solicitar Diagnóstico Gratuito</a>
+    </div>
+</section>
+
+<section id="servicios" class="section-light">
+    <h2>Nuestros Servicios</h2>
+    <div class="services">
+        <div class="card">
+            <h3>Automatización en Excel</h3>
+            <p>Macros avanzadas y control de producción.</p>
+        </div>
+        <div class="card">
+            <h3>Dashboards en Power BI</h3>
+            <p>Indicadores en tiempo real.</p>
+        </div>
+        <div class="card">
+            <h3>Optimización de Costos</h3>
+            <p>Mayor eficiencia y rentabilidad.</p>
+        </div>
+    </div>
+</section>
+
+<section id="beneficios" class="section-dark">
+    <h2>Beneficios</h2>
+    <div class="services">
+        <div class="card">
+            <h3>+ Productividad</h3>
+            <p>Menos tiempo perdido.</p>
+        </div>
+        <div class="card">
+            <h3>+ Control</h3>
+            <p>Datos claros para decisiones.</p>
+        </div>
+        <div class="card">
+            <h3>+ Rentabilidad</h3>
+            <p>Reducción de desperdicios.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" class="section-light">
+    <h2>Contacto</h2>
+    <p style="text-align:center;font-size:18px; line-height:1.8;">
+        📧 <a href="mailto:info.rpsolucionestextiles@gmail.com">
+        info.rpsolucionestextiles@gmail.com</a><br><br>
+
+        📱 <a href="https://wa.me/51977657267" target="_blank">
+        +51 977 657 267</a>
+    </p>
+</section>
+
+<footer>
+    © 2026 RP Soluciones Textiles | Automatización Industrial
+</footer>
+
+<!-- BOTÓN FLOTANTE -->
+<div class="whatsapp-float" onclick="toggleChat()">💬</div>
+
+<!-- CHAT IA -->
+<div class="chat-box" id="chatBox">
+    <div class="chat-header">RP Soluciones – Asistente Virtual</div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+            👋 Hola, soy tu asistente virtual. ¿Te interesa Excel, Power BI o un diagnóstico gratuito?
+        </div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<script>
+
+window.addEventListener("scroll", function(){
+    const navbar = document.getElementById("navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+function toggleChat(){
+    const chat = document.getElementById("chatBox");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if(message === "") return;
+
+    const messages = document.getElementById("chatMessages");
+    messages.innerHTML += `<div class="message user">${message}</div>`;
+
+    let response = "";
+
+    if(message.toLowerCase().includes("precio")){
+        response = "Ofrecemos diagnóstico gratuito. Luego cotizamos según el tamaño de tu operación.";
+    }
+    else if(message.toLowerCase().includes("excel")){
+        response = "Automatizamos procesos textiles con macros avanzadas en Excel.";
+    }
+    else if(message.toLowerCase().includes("power")){
+        response = "Creamos dashboards estratégicos en Power BI con indicadores en tiempo real.";
+    }
+    else{
+        response = "Gracias por tu mensaje. Un asesor se comunicará contigo al +51 977 657 267.";
+    }
+
+    setTimeout(()=>{
+        messages.innerHTML += `<div class="message bot">${response}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+    },800);
+
+    input.value = "";
+}
+
+</script>
+
+</body>
+</html>
