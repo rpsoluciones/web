@@ -84,15 +84,12 @@ nav a:hover::after{
     width:100%;
 }
 
-/* ================= HERO CON IMAGEN LOCAL ================= */
+/* ================= HERO ================= */
 
 .hero{
     height:100vh;
     background:
-        linear-gradient(
-            rgba(15,23,42,0.75),
-            rgba(15,23,42,0.85)
-        ),
+        linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.85)),
         url('hero.jpg');
     background-size:cover;
     background-position:center;
@@ -184,93 +181,34 @@ footer{
     padding:30px;
 }
 
-/* ================= WHATSAPP + CHAT IA ================= */
+/* ================= BOTÓN WHATSAPP REAL ================= */
 
 .whatsapp-float{
     position:fixed;
     bottom:25px;
     right:25px;
-    background:#25D366;
-    width:65px;
-    height:65px;
-    border-radius:50%;
+    background:linear-gradient(135deg,#25D366,#128C7E);
+    padding:14px 22px;
+    border-radius:50px;
     display:flex;
     align-items:center;
-    justify-content:center;
-    font-size:28px;
+    gap:10px;
     color:white;
-    cursor:pointer;
+    font-weight:600;
+    text-decoration:none;
     box-shadow:0 8px 25px rgba(0,0,0,0.3);
     z-index:1000;
     transition:0.3s;
 }
 
 .whatsapp-float:hover{
-    transform:scale(1.1);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.35);
 }
 
-.chat-box{
-    position:fixed;
-    bottom:100px;
-    right:25px;
-    width:330px;
-    background:white;
-    border-radius:12px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
-    display:none;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:1000;
+.whatsapp-icon{
+    font-size:22px;
 }
-
-.chat-header{
-    background:#25D366;
-    color:white;
-    padding:15px;
-    font-weight:600;
-}
-
-.chat-messages{
-    padding:15px;
-    height:260px;
-    overflow-y:auto;
-    font-size:14px;
-}
-
-.chat-input{
-    display:flex;
-    border-top:1px solid #ddd;
-}
-
-.chat-input input{
-    flex:1;
-    border:none;
-    padding:10px;
-    outline:none;
-}
-
-.chat-input button{
-    background:#25D366;
-    border:none;
-    color:white;
-    padding:10px 15px;
-    cursor:pointer;
-}
-
-.message{
-    margin-bottom:10px;
-}
-
-.bot{
-    color:#1e293b;
-}
-
-.user{
-    text-align:right;
-    color:#2563eb;
-}
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
     nav ul{
@@ -281,6 +219,12 @@ footer{
     }
     .hero h1{
         font-size:34px;
+    }
+    .whatsapp-float{
+        padding:14px;
+    }
+    .whatsapp-text{
+        display:none;
     }
 }
 
@@ -349,11 +293,25 @@ footer{
 <section id="contacto" class="section-light">
     <h2>Contacto</h2>
     <p style="text-align:center;font-size:18px; line-height:1.8;">
+
+       
+
         📧 <a href="mailto:info.rpsolucionestextiles@gmail.com">
         info.rpsolucionestextiles@gmail.com</a><br><br>
 
         📱 <a href="https://wa.me/51977657267" target="_blank">
-        +51 977 657 267</a>
+        +51 977 657 267</a><br><br>
+
+<span style="color:#2563eb; font-weight:600;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" 
+    fill="currentColor" viewBox="0 0 16 16" style="margin-right:6px;">
+        <path d="M8 0a5 5 0 0 0-5 5c0 3.25 5 11 5 11s5-7.75 5-11a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+    </svg>
+    Lima, Perú
+</span><br><br>
+
+
+
     </p>
 </section>
 
@@ -361,66 +319,19 @@ footer{
     © 2026 RP Soluciones Textiles | Automatización Industrial
 </footer>
 
-<!-- BOTÓN FLOTANTE -->
-<div class="whatsapp-float" onclick="toggleChat()">💬</div>
-
-<!-- CHAT IA -->
-<div class="chat-box" id="chatBox">
-    <div class="chat-header">RP Soluciones – Asistente Virtual</div>
-    <div class="chat-messages" id="chatMessages">
-        <div class="message bot">
-            👋 Hola, soy tu asistente virtual. ¿Te interesa Excel, Power BI o un diagnóstico gratuito?
-        </div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
-        <button onclick="sendMessage()">Enviar</button>
-    </div>
-</div>
+<!-- BOTÓN CONSULTAR POR WHATSAPP -->
+<a class="whatsapp-float"
+   href="https://wa.me/51977657267?text=Hola,%20quiero%20información%20sobre%20automatización%20y%20control%20de%20producción%20textil"
+   target="_blank">
+    <span class="whatsapp-icon">💬</span>
+    <span class="whatsapp-text">Consultar por WhatsApp</span>
+</a>
 
 <script>
-
 window.addEventListener("scroll", function(){
     const navbar = document.getElementById("navbar");
     navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
-
-function toggleChat(){
-    const chat = document.getElementById("chatBox");
-    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
-}
-
-function sendMessage(){
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if(message === "") return;
-
-    const messages = document.getElementById("chatMessages");
-    messages.innerHTML += `<div class="message user">${message}</div>`;
-
-    let response = "";
-
-    if(message.toLowerCase().includes("precio")){
-        response = "Ofrecemos diagnóstico gratuito. Luego cotizamos según el tamaño de tu operación.";
-    }
-    else if(message.toLowerCase().includes("excel")){
-        response = "Automatizamos procesos textiles con macros avanzadas en Excel.";
-    }
-    else if(message.toLowerCase().includes("power")){
-        response = "Creamos dashboards estratégicos en Power BI con indicadores en tiempo real.";
-    }
-    else{
-        response = "Gracias por tu mensaje. Un asesor se comunicará contigo al +51 977 657 267.";
-    }
-
-    setTimeout(()=>{
-        messages.innerHTML += `<div class="message bot">${response}</div>`;
-        messages.scrollTop = messages.scrollHeight;
-    },800);
-
-    input.value = "";
-}
-
 </script>
 
 </body>
